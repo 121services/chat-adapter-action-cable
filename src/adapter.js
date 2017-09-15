@@ -53,6 +53,12 @@ export default class ChatAdapterActionCable {
             self._cable = ActionCable.createConsumer(json.wss_url);
             self._subscriber = self.addChannelSubscriber(json.wss_channel_name, json.wss_channel_id);
 
+            if (json.older_messages_endpoint === undefined || json.older_messages_endpoint === '') {
+              console.warn(`${url} did not provide a valid older_messages_endpoint.`);
+            } else {
+              self._olderMessagesEndpoint = json.older_messages_endpoint;
+            }
+
             resolve(json);
           });
         } else {
@@ -90,5 +96,35 @@ export default class ChatAdapterActionCable {
 
   on(event, callback) {
     this._eventBus.on(event, callback);
+  }
+
+  requestOlderMessages(data) {
+    var self = this;
+
+    return new Promise(function (resolve, reject) {
+      if (self._olderMessagesEndpoint === undefined || self._olderMessagesEndpoint === '') {
+        reject('olderMessagesEndpoint is not defined. Unable to retrieve older messages');
+      } else {
+        let url = self._backendUrl + self._olderMessagesEndpoint;
+
+        fetch(url, {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(response => {
+          if (response.ok) {
+            response.json().then(json => {
+              resolve(json);
+            });
+          } else {
+            reject('HTTP error: ' + response.status);
+          }
+        }).catch(error => {
+          reject(error.message);
+        });
+      }
+    });
   }
 }
