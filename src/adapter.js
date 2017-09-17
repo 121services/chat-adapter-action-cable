@@ -11,10 +11,33 @@ export default class ChatAdapterActionCable {
     return this._name;
   }
 
-  get subscriber() {
-    return this._subscriber;
+  addChannelSubscriber(channelId, userId) {
+    var self = this;
+
+    return this._cable.subscriptions.create({channel: channelId, userId: userId}, {
+      received(data) {
+        self._eventBus.emit('ucw:newRemoteMessage', data);
+      },
+      // Called when the subscription is ready for use on the server
+      connected() {
+        console.debug('channel connected');
+      },
+
+      // Called when the WebSocket connection is closed
+      disconnected() {
+        console.debug('channel disconnected');
+      },
+
+      // Called when the subscription is rejected by the server
+      rejected() {
+        console.debug('channel rejected');
+      }
+    });
   }
 
+  //
+  // public API
+  //
   init(config) {
     var url;
 
@@ -70,28 +93,8 @@ export default class ChatAdapterActionCable {
     });
   }
 
-  addChannelSubscriber(channelId, userId) {
-    var self = this;
-
-    return this._cable.subscriptions.create({channel: channelId, userId: userId}, {
-      received(data) {
-        self._eventBus.emit('ucw:newRemoteMessage', data);
-      },
-      // Called when the subscription is ready for use on the server
-      connected() {
-        console.debug('channel connected');
-      },
-
-      // Called when the WebSocket connection is closed
-      disconnected() {
-        console.debug('channel disconnected');
-      },
-
-      // Called when the subscription is rejected by the server
-      rejected() {
-        console.debug('channel rejected');
-      }
-    });
+  send(data) {
+    this._subscriber.send(data);
   }
 
   on(event, callback) {
