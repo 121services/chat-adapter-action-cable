@@ -61,16 +61,24 @@ export default class ChatAdapterActionCable {
       }).then(response => {
         if (response.ok) {
           response.json().then(json => {
+            if (json.status !== 200) {
+              reject(`${url} returned status ${json.status}: ${json.message}`);
+              return;
+            }
+
             if (json.wss_url === undefined || json.wss_url === '') {
               reject(`${url} did not provide a valid wss_url to open ActionCable web sockets`);
+              return;
             }
 
             if (json.wss_channel_name === undefined || json.wss_channel_name === '') {
               reject(`${url} did not provide a valid wss_channel_name for ActionCable use`);
+              return;
             }
 
             if (json.wss_channel_id === undefined || json.wss_channel_id === '') {
               reject(`${url} did not provide a valid wss_channel_id for ActionCable use`);
+              return;
             }
 
             self._cable = ActionCable.createConsumer(json.wss_url);
