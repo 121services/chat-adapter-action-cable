@@ -44,6 +44,8 @@ export default class ChatAdapterActionCable {
     this._backendUrl = config.backendUrl;
     // TODO *adapter.init json object to send to backend as initialization result will fire a ChatAdapter::onInit event
     this._initData = config.initData;
+    this._appId = this._initData.data.appId;
+
     // config.init.endpoint
     // config.init.method
     // config.init.data
@@ -102,6 +104,7 @@ export default class ChatAdapterActionCable {
   }
 
   send(data) {
+    data.appId = this._appId;
     this._subscriber.send(data);
   }
 
@@ -111,6 +114,8 @@ export default class ChatAdapterActionCable {
 
   requestOlderMessages(data) {
     var self = this;
+
+    data.appId = this._appId;
 
     return new Promise(function (resolve, reject) {
       if (self._olderMessagesEndpoint === undefined || self._olderMessagesEndpoint === '') {
