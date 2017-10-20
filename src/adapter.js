@@ -104,8 +104,10 @@ export default class ChatAdapterActionCable {
   }
 
   send(data) {
-    data.appId = this._appId;
-    this._subscriber.send(data);
+    var enhancedData = data;
+
+    enhancedData.appId = this._appId;
+    this._subscriber.send(enhancedData);
   }
 
   on(event, callback) {
@@ -114,8 +116,9 @@ export default class ChatAdapterActionCable {
 
   requestOlderMessages(data) {
     var self = this;
+    var enhancedData = data;
 
-    data.appId = this._appId;
+    enhancedData.appId = self._appId;
 
     return new Promise(function (resolve, reject) {
       if (self._olderMessagesEndpoint === undefined || self._olderMessagesEndpoint === '') {
@@ -128,7 +131,7 @@ export default class ChatAdapterActionCable {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(enhancedData)
         }).then(response => {
           if (response.ok) {
             response.json().then(json => {
