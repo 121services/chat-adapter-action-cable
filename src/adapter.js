@@ -42,7 +42,6 @@ export default class ChatAdapterActionCable {
     var url;
 
     this._backendUrl = config.backendUrl;
-    // TODO *adapter.init json object to send to backend as initialization result will fire a ChatAdapter::onInit event
     this._initData = config.initData;
     this._appId = this._initData.data.appId;
 
