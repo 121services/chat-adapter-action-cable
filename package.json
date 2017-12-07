@@ -2,7 +2,16 @@
   "name": "chat-adapter-actioncable",
   "version": "1.0.0",
   "description": "Rails Action Cable adapter for 121 Services' Universal Chat Widget",
-  "keywords": ["chat", "widget", "chatbots", "vue", "vuejs", "action-cable","actioncable", "wss"],
+  "keywords": [
+    "chat",
+    "widget",
+    "chatbots",
+    "vue",
+    "vuejs",
+    "action-cable",
+    "actioncable",
+    "wss"
+  ],
   "main": "lib/ChatAdapterActionCable.js",
   "scripts": {
     "build": "webpack --env build",
@@ -30,6 +39,10 @@
   },
   "author": "Carlos Gonzalez (https://catogonzalez.wordpress.com/)",
   "license": "MIT",
-  "homepage": "https://github.com/owner/project",
-  "bugs": "https://github.com/owner/project/issues"
+  "homepage": "https://github.com/catogonzalez/chat-adapter-action-cable",
+  "bugs": "https://github.com/catogonzalez/chat-adapter-action-cable/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catogonzalez/chat-adapter-action-cable.git"
+  }
 }
