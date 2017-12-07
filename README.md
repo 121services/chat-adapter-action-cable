@@ -1,13 +1,13 @@
 # Action Cable adapter for Universal Chat Widget (UCW)
 
-Connect the open source [Universal Chat Widget](https://github.com/) to any Rails Action Cable backend.
+Connect the open source [Universal Chat Widget](https://github.com/catogonzalez/universal-chat-widget) to any Rails Action Cable backend.
 
 
 ## Prerequisites
 
 This adapter implements the necessary methods for the chat widget to connect with an Action Cable Rails backend. You will need:
 * A Rails backend application or API that implements the [server side components](http://edgeguides.rubyonrails.org/action_cable_overview.html#server-side-components) of Action Cable
-* A copy of the [Universal Chat Widget](https://github.com/)
+* A copy of the [Universal Chat Widget](https://github.com/catogonzalez/universal-chat-widget)
 
 
 ## Getting Started
@@ -40,7 +40,7 @@ Mission accomplished... almost. If you installed Node in a typical way, using Ma
 
 
 ## New adapter development
-If you want to develop a new adapter to connect the Universal Chat Widget with any other backend, follow [these instructions](https://github.com).
+If you want to develop a new adapter to connect the Universal Chat Widget with any other backend, follow [these instructions](https://github.com/catogonzalez/universal-chat-widget).
 
  
 ## Build Setup
@@ -74,11 +74,13 @@ npm test
 
 ## Contributing
 
-Please read [CONTRIBUTING.md]https://github.com/your/project/contributing.md) for details on our code of conduct, and the process for submitting pull requests.
+If you have a feature request or found a bug, please open an issue [here](https://github.com/catogonzalez/chat-adapter-action-cable/issues)
+
+Help with developing and maintaining the code is welcome. Please read [CONTRIBUTING.md](https://github.com/catogonzalez/chat-adapter-action-cable/contributing.md) for details on our code of conduct, and the process for submitting pull requests.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/catogonzalez/chat-adapter-action-cable/tags). 
 
 ## Authors
 
