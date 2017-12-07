@@ -1,6 +1,6 @@
 {
   "name": "chat-adapter-actioncable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rails Action Cable adapter for 121 Services' Universal Chat Widget",
   "keywords": [
     "chat",
